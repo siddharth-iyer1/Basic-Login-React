@@ -8,9 +8,23 @@ export const Signin = (props) => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
 
-  const handleSubmit = (e) => { 
+  const handleSubmit = async (e) => {
     e.preventDefault();
+    try {
+      const response = await fetch('http://127.0.0.1:8001/signin', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({ email, password })
+      });
+      const data = await response.json();
+      console.log(data);
+    } catch (error) {
+      console.error('Error logging in:', error);
+    }
   }
+  
 
   return (
     <div className="auth-form">

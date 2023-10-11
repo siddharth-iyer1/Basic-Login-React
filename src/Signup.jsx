@@ -9,18 +9,23 @@ export const Signup = (props) => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
 
-  const handleSubmit = () => {
-    console.log("TEST");
-    try{
-      fetch('http://127.0.0.1:8001/signup', {
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    try {
+      const response = await fetch('http://127.0.0.1:8001/signup', {
         method: 'POST',
-        body: {"Message" : "Hello"}
-      })
-    }
-    catch{
-      console.log("Aniketh");
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({ firstName, lastName, email, password })
+      });
+      const data = await response.json();
+      console.log(data);
+    } catch (error) {
+      console.error('Error signing up:', error);
     }
   }
+  
 
   return (
     <div className="auth-form">
