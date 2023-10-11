@@ -10,17 +10,17 @@ export const Signup = (props) => {
   const [password, setPassword] = useState('');
 
   const handleSubmit = () => {
-    fetch('/signup', {
-      method: 'POST',
-      body: JSON.stringify({
-        firstName,
-        lastName,
-        email,
-        password
+    console.log("TEST");
+    try{
+      fetch('http://127.0.0.1:8001/signup', {
+        method: 'POST',
+        body: {"Message" : "Hello"}
       })
-    })
-
-}
+    }
+    catch{
+      console.log("Aniketh");
+    }
+  }
 
   return (
     <div className="auth-form">
@@ -54,8 +54,8 @@ export const Signup = (props) => {
           onChange={(e) => setPassword(e.target.value)} 
         />
 
-        <Button variant="contained" type="submit">
-          Log In!
+        <Button variant="contained" type="submit" onClick={handleSubmit}>
+          Sign Up!
         </Button>
       </form>
 
