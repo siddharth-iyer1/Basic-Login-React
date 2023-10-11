@@ -4,16 +4,41 @@ import TextField from '@mui/material/TextField';
 
 export const Signup = (props) => {
 
+  const [firstName, setFirstName] = useState('');
+  const [lastName, setLastName] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
 
-  const handleSubmit = (e) => {
-    e.preventDefault();
-  }
+  const handleSubmit = () => {
+    fetch('/signup', {
+      method: 'POST',
+      body: JSON.stringify({
+        firstName,
+        lastName,
+        email,
+        password
+      })
+    })
+
+}
 
   return (
     <div className="auth-form">
       <form className="signup-form" onSubmit={handleSubmit}>
+        <TextField 
+          label="First Name" 
+          variant="outlined"
+          value={firstName}
+          onChange={(e) => setFirstName(e.target.value)}
+        />
+
+        <TextField 
+          label="Last Name" 
+          variant="outlined"
+          value={lastName}
+          onChange={(e) => setLastName(e.target.value)}
+        />
+
         <TextField 
           label="Email" 
           variant="outlined"
