@@ -26,6 +26,7 @@ export const Signup = (props) => {
     }
   }
   
+  
 
   return (
     <div className="auth-form">
@@ -59,7 +60,7 @@ export const Signup = (props) => {
           onChange={(e) => setPassword(e.target.value)} 
         />
 
-        <Button variant="contained" type="submit" onClick={handleSubmit}>
+        <Button variant="contained" type="submit">
           Sign Up!
         </Button>
       </form>
